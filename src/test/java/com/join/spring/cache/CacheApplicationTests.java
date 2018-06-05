@@ -1,5 +1,6 @@
 package com.join.spring.cache;
 
+import com.join.spring.cache.dto.Student;
 import com.join.spring.cache.service.TestService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,9 +19,9 @@ public class CacheApplicationTests {
 	@Test
 	public void contextLoads() {
 
-		System.out.println(testService.get("123","123"));
-		System.out.println(testService.get("asdasd","123"));
-		System.out.println(testService.get("123","234"));
+		System.out.println(testService.get(new Student("张三",12)));
+		System.out.println(testService.get(new Student("李四", 13)));
+		System.out.println(testService.get(new Student("张三",12)));
 
 	}
 

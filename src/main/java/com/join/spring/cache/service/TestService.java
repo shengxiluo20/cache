@@ -1,5 +1,6 @@
 package com.join.spring.cache.service;
 
+import com.join.spring.cache.dto.Student;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +10,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestService {
 
-    @Cacheable(value = "test#120#90", key="#a")
-    public String get(String a ,String b){
+//    @Cacheable(value = "test", key="#root.target.getDictTableName() + '_' + #root.target.getFieldName()")
+    @Cacheable(value = "test", key="#student.name")
+    public String get(Student student){
 
-        System.out.println("未走缓存");
-        return "========"+a+b;
+        System.out.println("缓存数据");
+        return "========"+student.getName()+student.getAge();
+    }
+
+
+    public String getDictTableName(){
+        return "aaaaaa";
+    }
+
+    public String getFieldName(){
+        return "bbbbb";
     }
 }
