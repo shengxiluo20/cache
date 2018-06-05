@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestService {
 
-    @Cacheable("test")
+    @Cacheable(value = "test#120#90", key="#a")
     public String get(String a ,String b){
 
         System.out.println("未走缓存");
