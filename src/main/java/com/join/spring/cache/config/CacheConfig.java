@@ -1,13 +1,9 @@
 package com.join.spring.cache.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachingConfigurerSupport;
-import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -19,6 +15,7 @@ import java.util.Map;
  **/
 @Configuration
 public class CacheConfig {
+
 
     @Bean
     public RedisTemplate redisTemplate(RedisTemplate redisTemplate) {
@@ -45,6 +42,12 @@ public class CacheConfig {
         expires.put("people", 1000L);
         expires.put("test", 20L);
         cacheManager.setExpires(expires);
+//
+//        Map<String, CacheTime> cacheTimes = new HashMap<>();
+//        cacheTimes.put("people", new CacheTime(120, 115));
+//        cacheTimes.put("test", new CacheTime(120, 115));
+//        cacheManager.setCacheTimess(cacheTimes);
+//
 
         return cacheManager;
     }
