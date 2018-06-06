@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 public class TestService {
 
 //    @Cacheable(value = "test", key="#root.target.getDictTableName() + '_' + #root.target.getFieldName()")
+//    @Cacheable(value = "test")
+
+
     @Cacheable(value = "test", key="#student.name")
     public String get(Student student){
 
