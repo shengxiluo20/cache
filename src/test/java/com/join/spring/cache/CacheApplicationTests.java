@@ -19,9 +19,9 @@ public class CacheApplicationTests {
 	@Test
 	public void contextLoads() {
 
-		System.out.println(testService.get(new Student("张三",12)));
-		System.out.println(testService.get(new Student("李四", 13)));
-		System.out.println(testService.get(new Student("张三",12)));
+		System.out.println(testService.get(new Student("张三",12,100L)));
+		System.out.println(testService.get(new Student("李四", 13,100L)));
+		System.out.println(testService.get(new Student("张三",12,100L)));
 
 	}
 

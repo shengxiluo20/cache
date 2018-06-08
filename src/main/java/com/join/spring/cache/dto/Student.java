@@ -11,6 +11,8 @@ public class Student implements Serializable{
 
     private Integer age;
 
+    private Long expireTime;
+
     public String getName() {
         return name;
     }
@@ -27,27 +29,17 @@ public class Student implements Serializable{
         this.age = age;
     }
 
-    public Student(String name, Integer age) {
+    public Student(String name, Integer age,Long expireTime) {
         this.name = name;
         this.age = age;
+        this.expireTime = expireTime;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Student student = (Student) o;
-
-        if (name != null ? !name.equals(student.name) : student.name != null) return false;
-        return age != null ? age.equals(student.age) : student.age == null;
+    public Long getExpireTime() {
+        return expireTime;
     }
 
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (age != null ? age.hashCode() : 0);
-        return result;
+    public void setExpireTime(Long expireTime) {
+        this.expireTime = expireTime;
     }
 }

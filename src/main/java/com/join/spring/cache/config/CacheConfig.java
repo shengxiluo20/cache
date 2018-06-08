@@ -38,7 +38,7 @@ public class CacheConfig extends CachingConfigurerSupport {
 
     @Bean
     public RedisCacheManager cacheManager(RedisTemplate<Object, Object> redisTemplate) {
-        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+        CustomizedRedisCacheManager cacheManager = new CustomizedRedisCacheManager(redisTemplate);
 
         // 开启使用缓存名称最为key前缀
         cacheManager.setUsePrefix(true);
@@ -46,15 +46,15 @@ public class CacheConfig extends CachingConfigurerSupport {
         cacheManager.setDefaultExpiration(1000L);
 
         // 设置缓存的过期时间
-        Map<String, Long> expires = new HashMap<>();
-        expires.put("people", 1000L);
-        expires.put("test", 20L);
-        cacheManager.setExpires(expires);
-//
-//        Map<String, CacheTime> cacheTimes = new HashMap<>();
-//        cacheTimes.put("people", new CacheTime(120, 115));
-//        cacheTimes.put("test", new CacheTime(120, 115));
-//        cacheManager.setCacheTimess(cacheTimes);
+//        Map<String, Long> expires = new HashMap<>();
+//        expires.put("people", 1000L);
+//        expires.put("test", 20L);
+//        cacheManager.setExpires(expires);
+
+        Map<String, CacheTime> cacheTimes = new HashMap<>();
+        cacheTimes.put("people", new CacheTime(120, 115));
+        cacheTimes.put("test", new CacheTime(120, 115));
+        cacheManager.setCacheTimess(cacheTimes);
         return cacheManager;
     }
 
