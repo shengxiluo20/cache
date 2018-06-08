@@ -14,7 +14,7 @@ public class TestService {
 //    @Cacheable(value = "test")
 
 
-    @Cacheable(value = "test", key="#student.name")
+    @Cacheable(value = "student", key="#student.name")
     public String get(Student student){
 
         System.out.println("缓存数据");
