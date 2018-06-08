@@ -1,6 +1,6 @@
 package com.join.spring.cache;
 
-import com.join.spring.cache.dto.Student;
+import com.join.spring.cache.dto.QRCodeType;
 import com.join.spring.cache.service.TestService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,16 +13,15 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class CacheApplicationTests {
 
-	@Resource
-	private TestService testService;
+    @Resource
+    private TestService testService;
 
-	@Test
-	public void contextLoads() {
-
-		System.out.println(testService.get(new Student("张三",12,100L)));
-		System.out.println(testService.get(new Student("李四", 13,100L)));
-		System.out.println(testService.get(new Student("张三",12,100L)));
-
-	}
-
+    @Test
+    public void contextLoads() {
+        System.out.println(testService.get("111", QRCodeType.BRANCH));
+        System.out.println("=============================");
+        System.out.println(testService.get("222", QRCodeType.PAYMENT));
+        System.out.println("=============================");
+        System.out.println(testService.get("111", QRCodeType.BRANCH));
+    }
 }

@@ -1,5 +1,6 @@
 package com.join.spring.cache.config;
 
+import com.join.spring.cache.dto.QRCodeType;
 import org.springframework.cache.Cache;
 import org.springframework.cache.interceptor.BasicOperation;
 import org.springframework.cache.interceptor.CacheOperationInvocationContext;
@@ -31,28 +32,18 @@ public class CustomCacheResolver implements CacheResolver {
         List<Cache> caches = new ArrayList<Cache>();
         try {
             for (String cacheName : context.getOperation().getCacheNames()) {
-                if("student".equals(cacheName)){
-                    caches.add(cacheManager.getCache(cacheName));
+                if("QRcode".equals(cacheName)){
                     Object[] args = context.getArgs();
-
                     for (Object arg : args) {
-                        Method method = arg.getClass().getDeclaredMethod("getName");
-                        String invoke = (String)method.invoke(arg);
-                        caches.add(cacheManager.getCache(invoke));
+                        if(QRCodeType.class == arg.getClass()){
+                            caches.add(cacheManager.getCache("QRcode:"+arg.toString()));
+                        }
                     }
-
-
                 }else {
                     caches.add(cacheManager.getCache(cacheName));
                 }
             }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return caches;
