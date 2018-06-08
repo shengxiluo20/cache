@@ -24,11 +24,6 @@ public class CustomCacheResolver implements CacheResolver {
     @Override
     public Collection<? extends Cache> resolveCaches(CacheOperationInvocationContext<?> context) {
 
-        Object target = context.getTarget();
-        Class<?> clazz = target.getClass();
-
-        BasicOperation operation = context.getOperation();
-
         List<Cache> caches = new ArrayList<Cache>();
         try {
             for (String cacheName : context.getOperation().getCacheNames()) {
